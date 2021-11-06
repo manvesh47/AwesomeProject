@@ -28,9 +28,13 @@ function ArticleDetails(props) {
   return (
     <ScrollView>
       <Card>
-        <Text style={{ fontSize: 20 }}>{data.title}</Text>
+        <View style={styles.header}>
+          <Text style={{ fontSize: 20 }}>{data.title}</Text>
 
-        <Text style={{ fontSize: 30 }}>{data.description}</Text>
+          <Text style={{ fontSize: 30, fontStyle: "italic" }}>
+            {data.description}
+          </Text>
+        </View>
 
         <View style={styles.btnStyle}>
           <Button
@@ -61,7 +65,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     margin: 15,
-    padding: 10,
+    padding: 30,
+  },
+  header: {
+    width: "100%",
+    height: "auto",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
 });
 

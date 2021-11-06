@@ -5,6 +5,7 @@ import Home from "./Screens/Home";
 import Create from "./Screens/Create";
 import ArticleDetails from "./Screens/ArticleDetails";
 import ArticleEdit from "./Screens/ArticleEdit";
+import Signup from "./Screens/Signup";
 import Contants from "expo-constants";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -23,6 +24,11 @@ function App() {
   return (
     <View style={styles.container}>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{ ...myStyles, title: "Signup" }}
+        />
         <Stack.Screen name="Home" component={Home} options={myStyles} />
         <Stack.Screen
           name="Create"

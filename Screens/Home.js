@@ -31,8 +31,6 @@ function Home(props) {
   const renderData = (item) => {
     return (
       <Card style={styles.cardStyle} onPress={() => clickedItem(item)}>
-        <Image source={pic1} style={{ width: 40, height: 40 }} />
-
         <Text style={{ fontSize: 20 }}>{item.title}</Text>
         <Text style={{ fontSize: 15 }}>{item.description}</Text>
       </Card>
