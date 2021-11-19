@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, FlatList, StyleSheet, Text, View, Alert } from "react-native";
+import { FlatList, StyleSheet, Text, View, Alert } from "react-native";
 import { Card, FAB } from "react-native-paper";
+import { TextInput, Button } from "react-native-paper";
 import { Image } from "react-native";
 import pic1 from "../images/pic.png";
 
@@ -30,9 +31,18 @@ function Home(props) {
 
   const renderData = (item) => {
     return (
-      <Card style={styles.cardStyle} onPress={() => clickedItem(item)}>
-        <Text style={{ fontSize: 20 }}>{item.title}</Text>
-        <Text style={{ fontSize: 15 }}>{item.description}</Text>
+      <Card style={styles.cardStyle}>
+        <Text style={{ fontSize: 20, fontWeight: "bold", textAlign: "center" }}>
+          Name: {item.title}
+        </Text>
+        <Text style={{ fontSize: 15, textAlign: "center" }}>
+          Description: {item.description}
+        </Text>
+        <View style={styles.btnStyle}>
+          <Button onPress={() => clickedItem(item)}>
+            Click for more details
+          </Button>
+        </View>
       </Card>
     );
   };
@@ -70,6 +80,15 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     backgroundColor: "blue",
+  },
+  btnStyle: {
+    width: 230,
+    marginLeft: "auto",
+    marginRight: "auto",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 10,
+    backgroundColor: "white",
   },
 });
 

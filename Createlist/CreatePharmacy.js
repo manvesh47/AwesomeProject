@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-function Create(props) {
-  const [title, setTitle] = useState("");
+
+function CreatePharmacy(props) {
+  const [contact, setContact] = useState("");
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
-  const [experience, setExperience] = useState("");
+  const [location, setLocation] = useState("");
 
   const InsertData = () => {
-    fetch("http://192.168.253.229:8080/articles/", {
+    fetch("http://192.168.253.229:8080/Pharmacy/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
 
       body: JSON.stringify({
-        title: title,
-        description: description,
         name: name,
-        experience: experience,
+        contact: contact,
+        description: description,
+        location: location,
       }),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        props.navigation.navigate("Home");
+        props.navigation.navigate("Pharmacy");
       })
       .catch((error) => console.log("error"));
   };
@@ -32,10 +33,10 @@ function Create(props) {
     <View>
       <TextInput
         style={styles.inputstyles}
-        label="Title"
-        value={title}
+        label="Contact"
+        value={contact}
         mode="outlined"
-        onChangeText={(text) => setTitle(text)}
+        onChangeText={(text) => setContact(text)}
       />
       <TextInput
         style={styles.inputstyles}
@@ -55,11 +56,11 @@ function Create(props) {
       />
       <TextInput
         style={styles.inputstyles}
-        label="experience"
-        value={experience}
+        label="location"
+        value={location}
         multiline
         numberOfLines={5}
-        onChangeText={(text) => setExperience(text)}
+        onChangeText={(text) => setLocation(text)}
       />
 
       <Button
@@ -80,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Create;
+export default CreatePharmacy;

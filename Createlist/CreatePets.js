@@ -1,41 +1,49 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-function Create(props) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+
+function CreatePets(props) {
+  const [breed, setBreed] = useState("");
+  const [age, setAge] = useState("");
   const [name, setName] = useState("");
-  const [experience, setExperience] = useState("");
+  const [description, setDescription] = useState("");
 
   const InsertData = () => {
-    fetch("http://192.168.253.229:8080/articles/", {
+    fetch("http://192.168.253.229:8080/AdoptPet/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
 
       body: JSON.stringify({
-        title: title,
-        description: description,
         name: name,
-        experience: experience,
+        breed: breed,
+        description: description,
+        age: age,
       }),
     })
       .then((resp) => resp.json())
       .then((data) => {
-        props.navigation.navigate("Home");
+        props.navigation.navigate("Pharmacy");
       })
       .catch((error) => console.log("error"));
+  };
+
+  const numCheck = () => {
+    if (isNaN(age)) {
+      alert("not a valid number");
+    } else {
+    }
   };
 
   return (
     <View>
       <TextInput
         style={styles.inputstyles}
-        label="Title"
-        value={title}
+        label="breed"
+        value={breed}
         mode="outlined"
-        onChangeText={(text) => setTitle(text)}
+        onChangeText={(text) => setBreed(text)}
       />
       <TextInput
         style={styles.inputstyles}
@@ -47,19 +55,20 @@ function Create(props) {
       />
       <TextInput
         style={styles.inputstyles}
-        label="name"
-        value={name}
+        label="age"
+        keyboardType="phone-pad"
+        value={age}
         multiline
         numberOfLines={1}
-        onChangeText={(text) => setName(text)}
+        onChangeText={(text) => setAge(text)}
+        onBlur={numCheck()}
       />
       <TextInput
         style={styles.inputstyles}
-        label="experience"
-        value={experience}
+        label="name"
+        value={name}
         multiline
-        numberOfLines={5}
-        onChangeText={(text) => setExperience(text)}
+        onChangeText={(text) => setName(text)}
       />
 
       <Button
@@ -80,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Create;
+export default CreatePets;

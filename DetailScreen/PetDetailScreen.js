@@ -9,11 +9,11 @@ import {
 } from "react-native";
 import { Button, Card } from "react-native-paper";
 
-function ArticleDetails(props) {
+function PetDetailScreen(props) {
   const data = props.route.params.data;
 
   const deletedData = (data) => {
-    fetch(`http://192.168.253.229:8080/articles/${data.id}/`, {
+    fetch(`http://192.168.253.229:8080/AdoptPet/${data.id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -29,31 +29,15 @@ function ArticleDetails(props) {
     <ScrollView>
       <Card>
         <View style={styles.header}>
-          <Text style={{ fontSize: 40 }}>{data.title}</Text>
+          <Text style={{ fontSize: 20 }}>{data.name}</Text>
+
           <Text style={{ fontSize: 30, fontStyle: "italic" }}>
             {data.description}
           </Text>
-          <Text style={{ fontSize: 30, fontStyle: "italic" }}>{data.name}</Text>
           <Text style={{ fontSize: 30, fontStyle: "italic" }}>
-            {data.experience}
+            {data.breed}
           </Text>
-        </View>
-
-        <View style={styles.btnStyle}>
-          <Button
-            icon="update"
-            mode="contained"
-            onPress={() => props.navigation.navigate("Edit", { data: data })}
-          >
-            Edit
-          </Button>
-          <Button
-            icon="update"
-            mode="contained"
-            onPress={() => deletedData(data)}
-          >
-            Delete
-          </Button>
+          <Text style={{ fontSize: 30, fontStyle: "italic" }}>{data.age}</Text>
         </View>
       </Card>
     </ScrollView>
@@ -79,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ArticleDetails;
+export default PetDetailScreen;
